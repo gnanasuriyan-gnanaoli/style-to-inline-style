@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Toggle</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <style media="screen" type="text/css">
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .output {
+      width: 50px;
+      height: 50px;
+      background: url("https://cdn.pixabay.com/photo/2020/12/27/20/24/smile-5865208_1280.png") no-repeat;
+      background-size: contain;
+    }
+
+    input:checked+.output {
+      background: url("https://www.cambridge.org/elt/blog/wp-content/uploads/2019/07/Sad-Face-Emoji.png.webp") no-repeat;
+      background-size: contain;
+    }
+  </style>
+
+</head>
+
+<body>
+  <label for="toggle" class="btn btn-danger">Toggle</label>
+  <input type="checkbox" name="toggle" id='toggle' class="d-none">
+  <div class="output"></div>
+</body>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', setInlineStyles, false);
+  function setInlineStyles(){
+    const styleTag = document.querySelector('style')
+    var rules = styleTag.sheet.cssRules;
+    
+    for(var rule of rules){
+      var styles = rule.style
+      for(var style of styles){
+          console.log(rule.selectorText);
+          document.querySelectorAll(rule.selectorText).forEach((element) =>{
+            element.style[style] = styles[style];
+          })
+      }
+    }
+    // styleTag.remove();
+  }
+</script>
+</html>
